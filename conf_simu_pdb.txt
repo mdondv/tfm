@@ -1,0 +1,240 @@
+###################################################
+# Config file: system parameters and architecture #
+###################################################
+# General options, default values (can be overridden by command line options)
+#¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+Simulation options (non-mutable):
+  -f --file:
+    description: "Configuration file."
+    default:     "./conf_simu_pdb.txt"
+    name:        "<conf file>"
+    choices:     ~
+  -db --debug:
+    description: "Debugging level. Default is INFO."
+    default:     INFO
+    name:        "<debug>"
+    choices:     [DEBUG, INFO, ERROR, WARNING, CRITICAL]
+  -save_fr --save_firing_rate:
+    description: "Save the firing rate."
+    default:     'partial'
+    name:        "<save>"
+    choices:     ['none', 'all', 'partial']
+  -save --save_results:
+    description: "Save the simulation results."
+    default:     True
+    name:        "<save>"
+    choices:     [False, True]
+  -overwrite --overwrite_results:
+    description: "Overwrite simulation results."
+    default:     False
+    name:        "<overwrite>"
+    choices:     [False, True]
+  -plot --plot_sample:
+    description: "Plot sample trial."
+    default:     False
+    name:        "<plot>"
+    choices:     [True, False]
+  -show_plots --show_plots:
+    description: "Show generated plots, if any."
+    default:     False
+    name:        "<show_plots>"
+    choices:     [True, False]
+  -no_bump --load_without_bump:
+    description: "Load initial conditions without the bump."
+    default:     False
+    name:        "<no_bump>"
+    choices:     [True, False]
+  -nobias --set_initial_phase:
+    description: "Set the initial phase of the bump."
+    default:     False
+    name:        "<nobias>"
+    choices:     [True, False]
+  -init_save --save_initial_firing_rate:
+    description: "Save the firing rate."
+    default:     False
+    name:        "<save_init>"
+    choices:     [True, False]
+  -init_load --load_initial_firing_rate:
+    description: "Load the firing rate."
+    default:     False
+    name:        "<load_init>"
+    choices:     [True, False]
+  -ntrials --num_trials:
+    description: "Number of trials."
+    default:     300
+    name:        "<ntrials>"
+    choices:     ~
+  -chunk --chunk:
+    description: "Number of trials per block."
+    default:     10
+    name:        "<chunk>"
+    choices:     ~
+  -cpus --num_cpus:
+    description: "Number of CPUs to use."
+    default:     2
+    name:        "<cpus>"
+    choices:     ~
+  -tmax --simulation_time:
+    description: "Simulation time in seconds."
+    default:     3.6
+    name:        "<tmax>"
+    choices:     ~
+  -quiet --quiet:
+    description: "Run the parallel simulation quietly."
+    default:     False
+    name:        "<quiet>"
+    choices:     [True, False]
+Stimulus:
+  -min_orient --minimum_value_orient_categories:
+    description: "Minimum value of the stimulus orientations range."
+    default:     -90
+    name:        "<min_orient>"
+    choices:     ~
+  -max_orient --maximum_value_orient_categories:
+    description: "Maximum value of the stimulus orientations range."
+    default:     90
+    name:        "<max_orient>"
+    choices:     ~
+  -step_orient --step_orient_categories:
+    description: "Step between two contiguous stimulus orientations."
+    default:     10
+    name:        "<step_orient>"
+    choices:     ~
+  -sigmaOU --standard_deviation:
+    description: "Standard deviation of the OU process associated to the stimulus."
+    default:     0.15
+    name:        "<sd_ou_stimulus>"
+    choices:     ~
+  -i0 --mean_input_over_critical_input:
+    description: "Additional mean input over critical input (Turing bifurcation boundary)."
+    default:     0.05
+    name:        "<i0>"
+    choices:     ~
+  -i0_init --mean_input_over_critical_input_initial_state:
+    description: "Additional mean input over critical input (Turing bifurcation boundary) at the initial state."
+    default:     0.05
+    name:        "<i0_init>"
+    choices:     ~
+  -i1 --amp_stimulus:
+    description: "Amplitude of the stimuli."
+    default:     0.005
+    name:        "<i1>"
+    choices:     ~
+  -i2 --input_decision:
+    description: "Amplitude of decision signal."
+    default:     0.00
+    name:        "<i2>"
+    choices:     ~
+  -nframes --number_of_frames:
+    description: "Number of frames that each stimulus has."
+    default:     2
+    name:        "<nframes>"
+    choices:     ~
+  -save_stim --save_stimuli_data:
+    description: "Save the created stimuli data."
+    default:     False
+    name:        "<save_stim>"
+    choices:     [True, False]
+  -stim_file --stimulus_file:
+    description: "File containing the stimulus (design matrix)."
+    default:     'default'
+    name:        "<stim_f>"
+    choices:     ~
+Network:
+  -n --n:
+    description: "Network discretization."
+    default:     200
+    name:        "<n>"
+    choices:     ~
+  -m --fsmodes:
+    description: "Modes of connectivity (Fourier series)."
+    default:     [-2.0, 1.0, 0.5]
+    name:        "<modes_connectivity>"
+    choices:     ~
+Decision_circuit:
+  -js --js:
+    description: "Self coupling. Recurrent excitatory connection strength."
+    default:     1.9
+    name:        "<js>"
+    choices:     ~
+  -jc --jc:
+    description: "Cross coupling. Inhibitory cross connection strength."
+    default:     1.0
+    name:        "<jc>"
+    choices:     ~
+  -max --maximum_value_of_kernel:
+    description: "Maximum value of the spatial kernel."
+    default:     0.003
+    name:        "<max>"
+    choices:     ~
+  -i_rest --rest_input:
+    description: "Constant baseline input into the decision network."
+    default:     0.33
+    name:        "<irest>"
+    choices:     ~
+  -i_urge --urge_input:
+    description: "Constant urgency input into the decision network."
+    default:     0.525
+    name:        "<iurge>"
+    choices:     ~
+  -dcue_duration --decision_duration:
+    description: "Duration of choice commitment (seconds)."
+    default:     2.0
+    name:        "<dcue_duration>"
+    choices:     ~
+  -urgency_duration --urgency_signal_duration:
+    description: "Duration of urgency signal (seconds)."
+    default:     1.0
+    name:        "<urgency_duration>"
+    choices:     ~
+Modulation:
+  -attention --attention_modulation:
+    description: "Activate attentional modulation."
+    default:     False 
+    name:        "<attention>"
+    choices:     [True, False]
+  -choice --no_choice_modulation:
+    description: "Suppress choice-related global modulation."
+    default:     True
+    name:        "<no_choice>"
+    choices:     [True, False]
+  -gg --global_gain:
+    description: "Amplitude of the global_gain."
+    default:     0.4
+    name:        "<gg>"
+    choices:     ~
+  -sg_exc --selective_gain_excitatory:
+    description: "Amplitude of the selective gain to the excitatory neurons."
+    default:     1.0
+    name:        "<sg_exc>"
+    choices:     ~
+  -sg_inh --selective_gain_inhibitory:
+    description: "Amplitude of the selective gain to the inhibitory neurons."
+    default:     1.0
+    name:        "<sg_inh>"
+    choices:     ~
+  -i_att_e --i_attention_gain_excitatory:
+    description: "Amplitude of the attentional modulation to excitatory neurons."
+    default:     3.0
+    name:        "<i_att_e>"
+    choices:     ~
+  -i_att_i --i_attention_gain_inhibitory:
+    description: "Amplitude of the attentional modulation to inhibitory neurons."
+    default:     2.5
+    name:        "<i_att_i>"
+    choices:     ~
+  -th_att --attentional_modulation_target_orientation:
+    description: "Orientation of the attentional modulation."
+    default:     40
+    name:        "<th_att_e>"
+    choices:     ~
+  -s_att_e --sigma_gain_excitatory:
+    description: "Variance of the attentional modulation to excitatory neurons."
+    default:     20
+    name:        "<s_att_e>"
+    choices:     ~
+  -s_att_i --sigma_gain_inhibitory:
+    description: "Variance of the attentional modulation to inhibitory neurons."
+    default:     30
+    name:        "<s_att_i>"
+    choices:     ~
